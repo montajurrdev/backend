@@ -1,0 +1,24 @@
+{
+  "name": "03___npm_basics__and__advanced_features",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js",
+    "dev": "node script.js",
+    "anything": "echo \"Error: no test specified\" && exit 1",
+    "colourCode": "echo \"\u001b[36mError: no test specified\u001b[39m\" && node script.js"
+  },
+  "keywords": [],
+  "author": "Montajur Rahman",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "accessibility": "^4.5.12",
+    "chalk": "^5.6.2",
+    "one-liner-joke": "^1.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

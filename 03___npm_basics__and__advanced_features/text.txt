@@ -1,0 +1,75 @@
+Computing/Network Protocol: Rules governing the transmission of data between computer systems, defining syntax, semantics, and error recovery. Examples include TCP/IP and HTTP.
+
+
+
+npm understanding:
+
+npm =  node package manager
+
+// now it just npm
+
+module vs package
+
+by default nodejs core a ja installed ase seti module/ node module
+npm theke ja download kora hoy segulo package
+
+// npm
+
+install → npm install packageName
+uninstall → npm uninstall packageName
+
+any particular version install or uninstall:
+npm install packageName@version
+npm uninstall packageName@version
+
+ex: npm i accessibility@4.5.12
+
+
+// node modules
+
+project a install kora sob package node modules a store hoy
+
+onek package onno kono package er upor dependent hoy. sei package o automatically install hoye jay
+
+
+// dependencies:
+all package called dependencies in project. 
+
+
+ex: express dependent on many package. when we install express, all needed package installed at this time.
+when we delete express, all dependent package is deleted
+
+
+
+// devdependencies:
+
+jesob packages kebol development er time a use kora hoy, 
+app complete hoyer por ar kaje lage na, seisob package ke devdependencies bola hoy
+
+ex: nodemon
+
+app deploy er por devdependencies proyojon pore na.
+
+so, those package is not needed after deploy. 
+we will keep those packages at devdependencies
+
+= npm install nodemon --save-dev
+
+
+
+// script:
+npm start
+npm test
+npm run dev
+npm run something
+
+scripts = custom shortcuts for commands
+
+
+start, test, stop, restart = npm auto recognizes these name. 
+they are shortcut of → npm run start/these 
+
+
+dev, ajaira, anything = it are not predefined. that's why we need to use "run" 
+
+All scripts are defined in package.json
