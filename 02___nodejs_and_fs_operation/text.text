@@ -1,0 +1,58 @@
+NodeJs:
+
+programming language X
+technology X
+framework X
+library X
+software X
+
+
+= it's js runtime environment
+but what it is?
+
+
+before NodeJs:
+js have no functionalities that is built backend. And it can't run outside browser
+
+=ryan dahl thinking-----
+
+he use google chrome v8 engine (open source), that runs js code.
+
+but v8 is built with c++
+
+after that ryan dahl built a wrapper on v8 engine.
+
+wrapper have extra power like read file, create server, access os.
+it's built with c/c++, some js 
+
+v8 engine convert js code to machine code
+v8 runs js
+NodeJS provides backend features
+
+that wrapper and v8 engine is called NodeJS jointly
+
+So, as long as NodeJS is running on our system, we can build or write js code to build backend.
+
+that's why it's called runtime environment
+
+
+
+
+//
+//
+npm → code store like playstore for app
+
+in npm, many people upload their code (code have special feature like app) 
+
+that is we called package. (npm package)
+
+when we need any special code , we can install it from npm store
+
+
+
+
+// working with node and npm
+
+-npm init → for manage node project.
+npm init install → package.json → details of the project
+

@@ -1,0 +1,13 @@
+{
+  "name": "02___nodejs_and_fs_operation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "keywords": [],
+  "author": "Montajur Rahman",
+  "license": "ISC",
+  "type": "commonjs"
+}
