@@ -1,0 +1,58 @@
+// Express.js Framework:
+
+// MERN STACK → MongoDB, Express, React, Node
+
+// Introduction to Express.js
+
+Express.js ak npm package
+framework
+manages everything from receiving the request and giving the response
+
+
+
+framework → akti flow(rules) dey. sei flow onujayi kaj korte hoy. 
+            full roadmap framework provide kore. 
+library → amader tools dey. je tools amader proyojon seta niye amra kaj korte pari.
+
+
+
+
+// Setting up Express.js 
+
+// Routes
+
+domain er por ja thake tai routes
+
+facebook.com/   → route /
+youtube.com/    → route /  main/root
+
+montajurrdev.com/project/orebi/   → route /project/orebi/
+
+
+
+// Middleware:
+
+routes er age thake.
+
+server akta request accept korar por route a reach korar age 
+jodi request ke badha deoya hoy and kichu perform kora hoy, 
+to sei element ke middleware bola hoy
+
+
+middleware dui vabe use kora jay.
+1. globally → sob request a eti cholbe.  app.use()
+2. specific route er jonno
+
+
+
+
+// Request and Response handling
+frontend → req → backend → res → frontend
+
+
+// Error handling
+Express.js have special route for error handling
+
+app.use(function(err, req, res, next){})
+
+error handling sober sese bosbe

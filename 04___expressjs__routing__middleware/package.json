@@ -1,0 +1,17 @@
+{
+  "name": "04___expressjs__routing__middleware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch script.js"
+  },
+  "keywords": [],
+  "author": "Montajur Rahman",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
