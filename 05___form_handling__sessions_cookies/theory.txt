@@ -1,0 +1,41 @@
+// form handling and working with the forms:
+
+handle backend process of forms and making sure the data coming from any
+frontend lib, fw, templating engines, 
+we still handle handle it at the backend
+
+
+// session & cookie
+
+server is stateless. after login, server forget users. that's why, need to log in again and again per request.
+here comes a topic - session & cookie
+
+
+// process
+amra jekono data frontend er browser a rakhte pari. And jokhoni backend a kono request patabo
+tokhonei sei saved data automatically backend a chole jabe.
+
+
+for checking identity: need login
+at the time of login, server send a string(token) to client browser.
+browser saved it as a cookie. and give permission to access for standard time.
+
+
+
+
+cookie → saved data in browser
+session → connection time. because token(string) have expire time for security
+
+from login to log out time → is called session
+
+
+
+
+
+// form
+frontend theke jokhon form er data (name, email, etc) server a patano hoy
+sei data normal data hisebe jay na. which is actually a blob (stream data/binary data), that is unreadable data  
+
+we need to make it readable:
+
+app.use(express.urlencoded())
