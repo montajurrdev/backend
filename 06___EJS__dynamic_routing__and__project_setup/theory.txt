@@ -1,0 +1,51 @@
+initialize a project with npm
+express install
+
+
+// setting up parsers for from
+
+// setting up ejs for ejs pages  (Embedded JavaScript)
+<h1>2+2</h1>  // <%=2+2%>
+
+backend theke html page frontend a patano jay ejs er maddhome
+
+
+install ejs from npm
+setup ejs as a view engine
+
+
+// setting up public static files
+html,css,js images, data file,
+
+ejs page a public folder lekha jabe na.
+because public folder already mentioned at express.static()
+
+
+
+// dynamic routing
+    dynamic routing:
+    amra onek somoy kichu routes dekhi, jegulor just 1 ti part change hoy
+    /author/monir
+    /author/montajur
+    /author/rahman
+    /author/any
+
+    /profile/monir
+    /profile/montajur
+
+    /like/habijabi
+    /like/jlHDJDkjsA
+
+    we are not create all of these routes separately.
+    there comes a concept dynamic routing.
+
+    je routes ti dynamic kora proyojon tar age colon(:) dite hobe
+
+      
+
+    how to get data coming from frontend at backend
+    // params: url theke j info backend a jay tai params
+
+
+
+
