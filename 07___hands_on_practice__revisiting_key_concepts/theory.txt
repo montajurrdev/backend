@@ -1,0 +1,21 @@
+we are making a notes taking webapp
+
+in frontend Ui, there are remain:
+   input field → for title
+   text field → for text/details
+   button 
+  
+   and its bottom side:
+   card
+
+   data: we store it at a folder/file, not at database
+
+
+// it's a most likely todo webapp
+
+
+// all of these, we make and handle from backend
+
+
+
+// form data dekhte chaile in field a name dite hobe
