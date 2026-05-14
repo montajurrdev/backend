@@ -1,0 +1,60 @@
+Data Storage:
+        something like that where we can store all users info(image/video/audio/text/json/binary etc) — everything
+        file — .txt/.json → another data can't stored in file
+        
+        Database → can store everything
+        that's why we will read the concept named Database 
+
+
+// TYPES OF DBS — SQL | NoSQL(Not only SQL)
+
+
+
+SQL → data ke akta structure a rakha hoy - tables
+
+
+
+NoSQL → {JSON} — mongoDB (actual database. it's implementation of NoSQL concept. )
+
+
+
+SQL and NoSQL are concept. they are not Database. in SQL, data will store in tables format. And in NoSQL, Data will store in json format.
+
+
+what and why
+
+
+// terminologies — collections, documents, schemas, keys, models
+
+
+
+Backend: Application Server || DB Server
+
+
+AS - handle req/res/routes/login everything without data
+
+DBS - handle all data
+
+
+
+
+collections: many types of data can be store in one project (users/sales/products/expire products data)
+            Each of these are called collections.
+            sales collections/ users collections/ products collections
+
+
+
+Database -> Collections -> Document (single data/collection inside collections)
+
+
+
+====================================================
+code level:
+
+
+CODE                    Database
+---------------------------------------
+mongoose.connect ->     database create
+model create     ->     collection
+CREATE           ->     document
+
