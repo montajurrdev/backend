@@ -1,0 +1,21 @@
+mongodb installation
+mongodb connection
+schema
+model
+crud- create, read, update, delete
+
+
+mongoose:
+we have two server. express server and mongoDB server
+
+mongoose help us to communicate with these two server
+
+
+
+mongoose is an ODM.
+
+ODM - Object Document Mapping → used in NoSQL databases
+ORM -Object Relational Mapping → used in SQL databases
+
+Both ORM and ODM are tools that bridge the gap between programming code and databases
+
