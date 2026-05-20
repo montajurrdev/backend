@@ -1,0 +1,57 @@
+// authentication and authorization
+
+authentication:   
+user ke profile deoyar age, check korar proyojon pore 
+sei user actually ke
+
+this validation process is called authentication
+
+
+
+authorization:
+authorized to perform some tasks which are only allowed to be 
+executed by the admin
+
+
+
+server will forget every time who are you. jehetu server bhule jay je apni ke
+that's why it will ask you every time for every work/event, who are you?
+
+server is stateless.
+
+
+** it's a very big problem.
+this issue solved with cookies and sessions
+
+
+
+frontend → req → server 
+(server will ask who are you)
+
+user will log in using email,password — validate
+
+server will make a unique string
+
+then
+(res + string) → frontend (string will be saved in browser storage) 
+
+
+this string is called cookies. that is saved at browser storage as cookies
+
+this string will sent for next every req without every time log in
+
+
+as long as this string will work , that time is called sessions
+
+
+
+
+
+// we need to learn
+
+1. cookie kivabe set korte hoy and read korte hoy
+
+2. bcrypt kivabe use korte hoy for password encryption and decryption
+3. jwt ki? and jwt te data kivabe store kora hoy and ber kora hoy
+
+
