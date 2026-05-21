@@ -1,0 +1,60 @@
+// there is have some misconcept
+
+
+data association/relationship => relation between two concept/organization/company/group
+
+
+// concept
+ alibaba = market/ tader nijer kono product nei. sekhane deferent shop tader product ke upload kore, then sell kore
+
+ product upload concept:
+    alibaba er website a 1 crore product ace
+    computer zone akti shop er => 5 ti product
+
+    // kivabe buzbo je kon 5ti product computer zone er?
+
+    ei issue ti solve er jonno:
+    database a 2 ti collection a product rakhte hobe => alibaba + computer zone
+    
+       ** this is called embedding data/database
+       // store related data inside another document => duplicate issue
+
+    problem: storage => data will be stored at two deferent collection/document
+            storage besi lagbe
+
+
+    solution: we will store data only one time => alibaba collection
+
+     and add reference (product id) at computer zone collection => seller collection
+
+        ** this is called reference data/database
+
+
+        storage problem solved:
+
+
+
+// this is called data association/data relationship => relation between two company data
+
+we can associate data through:
+        embedding data/database or
+        reference data/database
+
+
+// obviously we will learn about reference data/database
+
+
+Data Relationship / Data Association:
+        One data is connected to another data
+        for example:
+
+                User ↔ Posts
+                Seller ↔ Products
+                Student ↔ Courses
+                Company ↔ Employees
+
+
+
+// i will learn deeply about embedding and referencing next time.
+
+
