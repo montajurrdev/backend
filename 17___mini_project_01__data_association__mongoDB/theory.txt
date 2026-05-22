@@ -1,0 +1,15 @@
+// project: users post likhte parbe
+
+features:
+    users create korte hobe
+    login and resister
+    logout
+    post creation
+    post like 
+    post delete => it only can see user itself (post owner)
+
+
+
+
+// protected route: 
+        through route based middleware
