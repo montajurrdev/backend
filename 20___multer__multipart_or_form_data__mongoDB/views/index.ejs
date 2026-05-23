@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-full h-screen bg-zinc-900 p-10 text-white">
+      <h3 class="text-3xl mb-5">Upload File</h3>
+      <form
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+        class="space-x-3 space-y-3"
+      >
+        <!-- data chunk akare jabe. because file size onek besi hote pare -->
+        <!-- post method use korle kono info url a jabe na. directly body te jabe -->
+
+        <input type="file" name="image" />
+        <input
+          class="px-5 py-2 rounded-md bg-blue-500"
+          type="submit"
+          value="Upload File"
+        />
+      </form>
+    </div>
+  </body>
+</html>

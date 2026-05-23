@@ -1,0 +1,23 @@
+// multer: multipart/form-data
+
+it handled files like images, video, audio, docs, pdf etc
+
+all of these we can upload through form — need to declare form type
+
+enctype = multipart/form-data
+
+
+// multer adds two object to req object
+
+1. body obj → contains value of form text fields
+
+2. file or files obj → contains the files uploaded via the form
+
+
+
+// storage:
+        DiskStorage - local storage - write file directly on server hard drive/ local directory
+
+        MemoryStorage - cloud - first, hold the raw file in the server's ram as a buffer obj.
+                                uploading to cloud storage(AWS S3, cloudinary)
+
