@@ -1,0 +1,30 @@
+// project: users post likhte parbe
+
+features:
+    users create korte hobe
+    login and resister
+    logout
+        done all of these at 17th class
+
+
+
+    post creation
+    post showing
+        done
+
+
+
+    post like 
+    post delete => it only can see user itself (post owner)
+            done
+
+
+
+// protected route: 
+        through route based middleware
+
+
+there is:
+    multer folder structure: 
+    profile picture upload
+
