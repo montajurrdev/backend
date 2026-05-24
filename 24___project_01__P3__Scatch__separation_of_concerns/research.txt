@@ -1,0 +1,47 @@
+camel case → totalOrderCost    first letter lowercase
+pascal case → TotalOrderCost   first letter uppercase
+snake case → total_order_cost  separated by underscores
+kebab case → total-order-cost  separated by hyphens
+
+standard;
+camel - routes, variables, function naming
+kebab - config, middlewares, models, controllers
+
+views - single case or camel case
+
+or we can write our way/ practicing way
+
+
+//
+// separation of concern
+
+1. models
+user - admin - owner
+
+we will create deferent model for user, owner
+
+
+2. db connection
+db is connected only once. we don't need to connect it in every model
+
+mongoose.connect() means:
+Connect my Node.js application to MongoDB Database. Because they are two separate systems
+
+when we call mongoose.connect()
+             Mongoose:
+             opens network connection
+             talks to MongoDB server
+             authenticates if needed
+             keeps connection alive
+             prepares queries/models
+it's one long-running connection. Mongoose doesn't reconnect every query
+
+
+that's why we will connect it in a standard folder/file
+config → database-connection.js
+
+
+3. routes:
+we need to separate all routes.
+express.Router() 
+
