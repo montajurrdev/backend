@@ -1,0 +1,49 @@
+// debugger at mongoose-connection
+
+debug => javascript debugging utility model
+
+for err handling => we use console.log()
+it print always everywhere.
+
+now we can use debug utility for err handling.
+initially it's not showing anything
+
+
+environment variable (debugger) setup:
+
+- export DEBUG=[debugger name]  for showing debug
+- export DEBUG=   for not showing 
+
+ex: (development:mongoose)
+export DEBUG=development:*    show development related debug
+export DEBUG=     remove env variable.
+
+
+
+//
+// .env/config setup: 
+for secure system => link/url/password/saltround/private keys
+all of these we need to keep a secure file. that is not accessible for everyone
+these will be stay hidden at deployment/production environment 
+
+// there is we used to config for store secure URI. uniform resource identifier
+
+config - scalable
+         npm pkg
+         provides consistent interface for managing application configuration across different environment(development, production)
+         allows to store configurations in external files(JSON, YAML, TOML)
+         support default, local, production-specific configuration files
+         access via global API - method: config.get('key) for retrieve values
+                                         config.has('key) to check for existence
+
+
+
+// DB URI setup via config
+
+
+// create owners routes
+
+// setup NODE_ENV variables  -- it will store at memory. not project file
+    export NODE_ENV=development
+
+
