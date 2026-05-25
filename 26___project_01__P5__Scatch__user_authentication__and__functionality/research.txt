@@ -1,0 +1,37 @@
+routes  —  pages
+
+/ -> signup or login
+/shop -> shop
+/users/cart -> cart
+/admin -> admin panel
+/owner/products -> show all products
+/owner/admin -> show admin panel to create products
+
+
+// need to learn joi npm pkg - it check users uploaded data if they did't upload any important data.
+
+
+first create => all pages with ejs.
+create index route => render home page. login or register
+
+then create => register route at userRouter => register feature
+
+for production grade: => move jwt to utils
+                         move req,res handler func to controllers (authController)
+
+validate data
+
+then create login feature => directly industry standard => like register
+
+then create: 
+isLoggedIn middleware => check at every req, is user logged in, or not
+            so that user can't open any pages without login
+
+//
+//
+ flash message: from connect-flash pkg
+ when we require this middleware => all req will have a req.flash() function 
+this flash is used with redirect()
+ this pkg will sent a message that is we can access in next route/pages
+
+
