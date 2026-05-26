@@ -27,6 +27,10 @@ then create:
 isLoggedIn middleware => check at every req, is user logged in, or not
             so that user can't open any pages without login
 
+
+
+
+
 //
 //
  flash message: from connect-flash pkg
@@ -35,3 +39,80 @@ this flash is used with redirect()
  this pkg will sent a message that is we can access in next route/pages
 
 
+
+// how to work redirect:
+// res create a http res and sends it to browser.
+// browser get res with new location.
+// browser automatically create a http req to new location
+// "/"  => root url a req patay
+// "/profile"  => root/profile a req patay
+// these are absolute path. means redirect from root
+
+// relative path: "profile" or "dashboard"  relative from current url
+// external url "https://www.google.com"
+
+
+
+//
+// config and .env issue:
+//
+// .env file store all secret keys. need to add it to gitignore
+// dotenv pkg => configure process.env
+// dotenv reads .env and parse key=value pairs
+// injects all environment variables into process.env
+
+// we can access anywhere into node.js runtime
+
+//
+// config/ folder => normal project organization
+// for keeping configuration file => db.js, or others file
+
+// config pkg => special configuration library
+                // it configure application by environment
+                // inside config/ folder default.json, development.json, production.json
+                // config pkg reads JSON inside config by environment
+                // provides values through config.get()
+
+
+// for small/medium project => we can only use:
+// .env + process.env  for secret keys
+
+
+// or we can use: .env + process.env + config pkg
+// for configure application by environment
+// this is best setup
+// but best for large/enterprise project
+
+// only config pkg harder to deploy application
+// it can't hide secret
+// if we add config, or config/files inside gitignore. hard to deploy
+
+
+
+//
+// environment variables: two types based on where they are stored:
+                .env variables   → stay at   project file
+                system environment variables → stay at operating system
+
+access through:
+.env variables   => process.env (dotenv)
+system variables => export V_N=value
+
+
+// environment variables can be classified in multiple ways:
+// where they are stored
+// how long they live
+// who can access them
+
+
+// how long they live: temporary/permanent variables
+                       export NODE_ENV=development
+
+
+// who can access them(By Scope): 
+Local Shell variables → NAME=John - only current shell can access it.child programs cannot access it
+Exported environment variables → export NAME=John  -  child processes can access it.
+
+
+
+                                 

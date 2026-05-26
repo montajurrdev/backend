@@ -8,9 +8,10 @@ router.get('/', (req, res)=>{
     
     res.render('index', {error})
 })
-
+ 
 router.get("/shop", isLoggedIn, (req, res)=>{
     res.render("shop")
 })
+
 
 module.exports = router;

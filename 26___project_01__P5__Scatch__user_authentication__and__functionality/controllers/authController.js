@@ -53,3 +53,20 @@ module.exports.loginUser = async function (req, res){
 
 
 }
+
+module.exports.logout = function (req, res){
+  res.cookie("token", "");
+  res.redirect("/");
+}
+
+
+// how to work redirect:
+// res create a http res and sends it to browser.
+// browser get res with new location.
+// browser automatically create a http req to new location
+// "/"  => root url a req patay
+// "/profile"  => root/profile a req patay
+// these are absolute path. means redirect from root
+
+// relative path: "profile" or "dashboard"  relative from current url
+// external url "https://www.google.com"
