@@ -1,0 +1,28 @@
+navbar
+add to cart
+
+
+inside ejs we can write variables through:
+<% %>
+// reusable layout/ partial routing:
+in ejs => we can make reusable layout through:
+<%- include("path") %>
+
+folder structure:
+views/
+│
+├── partials/
+│   ├── header.ejs
+│   └── footer.ejs
+│
+├── home.ejs
+├── about.ejs
+└── products.ejs
+
+
+
+// add to cart: this is only one product adding system.
+// no multiple product adding listing
+// or same product multiple time
+
+// need to learn about these.

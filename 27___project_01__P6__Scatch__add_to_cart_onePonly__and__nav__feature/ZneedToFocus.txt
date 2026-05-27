@@ -1,0 +1,6 @@
+1. config and env issue
+2. meme type 
+3. flash message 
+4. routes clearance
+5. joi pkg or custom middleware for uploaded file
+
