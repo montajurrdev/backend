@@ -115,4 +115,53 @@ Exported environment variables → export NAME=John  -  child processes can acce
 
 
 
-                                 
+ //                                
+// Buffer: A raw binary data and a Special object 
+when we upload a file (cat.png) => internally convert it to binary bytes (1010101100...) => 
+=> Node.js store this binary data inside a special object called buffer
+=> the actual data inside memory is binary. machine readable.
+
+=> but Node.js show it hex format => for human readable 
+<Buffer ff d8 ff e0 00 10 4a 46 49 46 ...>
+hex =>much shorter and easier
+
+// image/file => binary bytes => buffer
+
+
+//
+// base64 = a text/string format that represents binary data => text version of binary
+
+
+many systems (html, json, email, xml) can transfer text safely
+* but they can't transfer raw binary safely.
+
+So, binary is encoded into text using base64
+=> buffer.toString("base64)
+
+
+//
+//src
+normally: showing image in browser through img tag => <img src="URL">  
+src accept=> url => path/direct file url => that are actually string
+
+**src/browser is not accept binary data/buffer as file URI
+But
+browser also accept Data URI inside src
+Data URI => file data =>   src="data:[MIME TYPE];base64,[DATA]" 
+=> dataType/fileType, stringType/encodingType, string/actual file data
+
+that's why we need to convert binary data/buffer to string/text => that is base64
+
+base64 text format => build with ASCII character
+
+
+// url 
+HTTP URL => https://example.com/cat.jpg
+Relative URL => /images/cat.jpg
+Data URI => data:image/jpeg;base64,...
+
+//
+// need to learn about:
+Normal image =>  src = "Go download image from somewhere"
+Data URI image => src = "Image already exists right here"
+// and URI URI Schemes/protocol

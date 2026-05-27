@@ -10,7 +10,7 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="font-['helvetica_now_display'] bg-zinc-900">
+  <body class="font-['helvetica_now_display'] bg-zinc-900 text-white">
     <nav class="w-full fixed top-0 left-0 px-5 py-3">
       <h3 class="text-xl">Scatch</h3>
     </nav>
@@ -38,206 +38,34 @@
       </div>
       <div class="w-3/4 flex flex-col h-screen">
         <div class="flex items-start gap-5 flex-wrap">
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
-              </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
+          <% products.forEach((product)=>{%>            
+            <div id="product" class="w-60">
+              <div
+                class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]"
               >
-                <i class="ri-add-line"></i>
-              </a>
-            </div>
-          </div>
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
+                <img
+                  class="h-3/4"
+                  src="data:image/png;base64,<%= product.image.toString("base64") %>"
+                  alt="This is an image"
+                />
               </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
+              <div
+                class="flex justify-between bg-[<%= product.panelcolor %>] items-center px-4 py-4 text-[<%= product.textcolor %>]"
               >
-                <i class="ri-add-line"></i>
-              </a>
-            </div>
-          </div>
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
+                <div>
+                  <h3><%= product.name %></h3>
+                  <h4><%= product.price %></h4>
+                </div>
+                <a
+                  class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
+                  href=""
+                >
+                  <i class="ri-add-line"></i>
+                </a>
               </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
-              >
-                <i class="ri-add-line"></i>
-              </a>
             </div>
-          </div>
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
-              </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
-              >
-                <i class="ri-add-line"></i>
-              </a>
-            </div>
-          </div>
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
-              </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
-              >
-                <i class="ri-add-line"></i>
-              </a>
-            </div>
-          </div>
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
-              </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
-              >
-                <i class="ri-add-line"></i>
-              </a>
-            </div>
-          </div>
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
-              </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
-              >
-                <i class="ri-add-line"></i>
-              </a>
-            </div>
-          </div>
-          <div id="product" class="w-60">
-            <div
-              class="w-full h-52 flex items-center justify-center bg-zinc-500"
-            >
-              <img
-                class="h-[12rem]"
-                src="/images/1bag.png"
-                alt="This is an image"
-              />
-            </div>
-            <div
-              class="flex justify-between bg-zinc-700 items-center px-4 py-4 text-white"
-            >
-              <div>
-                <h3>product name</h3>
-                <h4>product price</h4>
-              </div>
-              <a
-                class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                href=""
-              >
-                <i class="ri-add-line"></i>
-              </a>
-            </div>
-          </div>
+          <%}) %>
+
 
         </div>
       </div>
