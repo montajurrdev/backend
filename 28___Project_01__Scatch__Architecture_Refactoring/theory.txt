@@ -1,0 +1,150 @@
+Architecture is the most important and first stage building a web/app.
+
+because
+// real applications grow problems like:
+duplicated logic
+fat controllers
+hard debugging
+validation everywhere
+repeated try/catch
+hard-to-maintain code
+
+that's why we need a structured Architecture
+
+because Architecture determines:
+    scalability
+    => is the ability of a system to handle increasing users, traffic, data, or workload without becoming slow or crashing
+        we can scalable a system with two way:
+        => Vertical Scaling (scale up) - upgrade hardware (ram, cpu)
+
+        => Horizontal Scaling (scale out) - add more server using load balancer
+
+    good folder structure and architecture help scalability
+    we can scalable our system without complete rewrites
+
+
+    maintainability
+    => How easy it is to understand, modify, fix, and extend a software system over time
+
+    A system is maintainable if another developer (or future myself) can work on it without getting lost/ destructing
+
+    debugging difficulty
+    => how hard it is to find and fix the cause of a bug (error/problem) in a system
+
+    investigation process is called debugging.
+
+
+    team collaboration
+    => multiple developers working together effectively on the same software project
+
+
+    code quality
+    => how good, clean, reliable, maintainable, and understandable code is
+
+
+    production readiness
+    => is this application ready to be used by real users in a real-world environment?
+
+
+
+
+// so we are building:
+    scalable, readable, production-style,  beginner-friendly architecture
+src/
+│
+├── config/
+├── controllers/
+├── services/
+├── repositories/
+├── models/
+├── routes/
+├── middlewares/
+├── validators/
+├── utils/
+├── errors/
+├── constants/
+├── app.js
+└── server.js
+
+
+
+// controllers:
+Responsibility => Handle request & response cycle only
+
+receive req => call service => return res 
+
+NOT: huge business logic, DB complexity, validation logic
+
+
+// services (brain):
+this is where real backend engineering begins
+Responsibility: Business logic layer
+
+pricing logic, cart calculation, stock checking, auth flow, order creation
+
+
+
+// repositories:
+Responsibility: Database access layer
+
+instead of product.findById(id) everywhere => we centralize DB logic
+
+DB change/testing becomes easier, optimization becomes centralized
+
+
+// middlewares:
+Responsibility: run before request Handler function
+
+we need to create middlewares for one job. Each middleware should do ONE job. 
+like, auth.middleware.js, error.middleware.js, validate.middleware.js, upload.middleware.js, rateLimit.middleware.js
+
+
+// validators:
+Responsibility: validate/checking every request
+
+data sent
+frontend => validate => accept request
+
+frontend input and validation is not trusted.
+
+
+// utils:
+Responsibility: store reusable helpers. 
+
+for avoiding duplicating utility logic.
+
+like generateToken.js, sendResponse.js, asyncHandler.js, pagination.js
+
+
+// errors:
+Responsibility: handles error
+
+store custom error system
+
+
+// config:
+Responsibility: centralized app configuration.
+
+db.js, env.js, cloudinary.js
+
+it keeps environment clean
+
+
+
+// constants:
+Responsibility: handles constants strings
+
+for avoiding magic strings everywhere
+
+instead of if(role === "admin") => ROLE.ADMIN 
+
+
+
+first separation:
+app.js and server.js
+
+server.js => ONLY start the server
+app.js => Contains: middleware, routes, error handlers
+
+
+Architecture means: also responsibility separation
