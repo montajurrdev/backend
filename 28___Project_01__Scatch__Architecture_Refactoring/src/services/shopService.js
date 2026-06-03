@@ -1,6 +1,7 @@
 const userModel = require("../models/user-model");
 const productModel = require("../models/product-model");
 
+
 module.exports.getCart = async (email) => {
   let user = await userModel.findOne({ email }).populate("cart");
   let bill = 0;

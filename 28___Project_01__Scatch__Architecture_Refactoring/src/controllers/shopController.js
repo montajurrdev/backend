@@ -1,33 +1,28 @@
-const {
-  getCart,
-  getShop,
-  getMyAccount,
-  addToCart,
-} = require("../services/shopService");
+const shopService = require("../services/shopService");
 
 module.exports.getCart = async (req, res, next) => {
   try {
-    const data = await getCart(req.user.email);
+    const {user, bill} = await shopService.getCart(req.user.email);
 
-    res.render("cart", { data });
+    res.render("cart", { user, bill });
   } catch (err) {
     next(err);
   }
 };
 
 module.exports.getShop = async (req, res, next) => {
-  const data = await getShop();
+  const {products} = await shopService.getShop();
 
   let success = req.flash("success");
 
 
   
-  res.render("shop", { data, success });
+  res.render("shop", { products, success });
 };
 
 module.exports.addToCart = async (req, res, next) => {
 
-  addToCart(req.user.email, req.params.productid);
+  await shopService.addToCart(req.user.email, req.params.productid);
 
   req.flash("success", "Added to cart");
   res.redirect("/shop");
@@ -35,9 +30,9 @@ module.exports.addToCart = async (req, res, next) => {
 
 module.exports.getMyAccount = async (req, res,next) => {
  
-  const data = await getMyAccount(req.user.email);
+  const {user} = await shopService.getMyAccount(req.user.email);
 
-  res.render("myAccount", { data });
+  res.render("myAccount", { user });
 }
 
 

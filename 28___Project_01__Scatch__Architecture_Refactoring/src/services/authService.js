@@ -29,7 +29,6 @@ module.exports.registerUser = async (data) => {
   });
 };
 
-
 module.exports.loginUser = async (data) => {
   let { email, password } = data;
 

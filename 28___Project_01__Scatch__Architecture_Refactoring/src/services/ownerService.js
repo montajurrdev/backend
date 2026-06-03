@@ -1,7 +1,6 @@
 const productModel = require("../models/product-model");
-
-// model
 const ownerModel = require("../models/owner-model");
+
 
 module.exports.createOwner = async (data) => {
 
