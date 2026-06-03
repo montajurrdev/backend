@@ -1,0 +1,54 @@
+const userModel = require("../models/user-model");
+const bcrypt = require("bcrypt");
+const { generateToken } = require("../utils/generateToken");
+
+module.exports.registerUser = async (data) => {
+  let { fullname, email, password } = data;
+
+  let user = await userModel.findOne({ email });
+  if (user) {
+    throw new Error("You already have an account, please login");
+  }
+
+  return new Promise((resolve, reject) => {
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(password, salt, async function (err, hash) {
+        if (err) return reject(err);
+
+        let user = await userModel.create({
+          fullname,
+          email,
+          password: hash,
+        });
+
+        let token = generateToken(user);
+
+        resolve({ token });
+      });
+    });
+  });
+};
+
+
+module.exports.loginUser = async (data) => {
+  let { email, password } = data;
+
+  let user = await userModel.findOne({ email });
+  if (!user) throw new Error("Email or Password incorrect");
+
+  const result = await bcrypt.compare(password, user.password);
+
+  if (!result) throw new Error("Email or Password incorrect");
+
+  let token = generateToken(user);
+
+  return { token };
+};
+
+// async callback problem
+// loginUser and registerUser
+// return {token} inside callback function under => bcrypt.compare()
+// callback function return, but loginUser/registerUser function is not returned anything
+// loginUser function finished before callback function => async style
+
+// fix: return inside loginUser function or  // wrapped promises outside bcrypt.compare() and return

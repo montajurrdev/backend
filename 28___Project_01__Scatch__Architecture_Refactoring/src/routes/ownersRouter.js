@@ -1,44 +1,25 @@
 const express = require("express");
 const router = express.Router(); // it handles routing
 
-// model
-const ownerModel = require("../models/owner-model");
+const {
+  createOwner,
+  adminDashboard,
+  productCreatePage,
+} = require("../controllers/ownerController");
 
-// console.log(process.env.NODE_ENV);
 
 // this routes will run till env variable is development
 if (process.env.NODE_ENV === "development") {
-  router.post("/create", async function (req, res) {
-    let owners = await ownerModel.find();
-    if (owners.length > 0){
-        return res
-        .status(500)
-        .send("You don't have permission to create a new owner.");
-    }
-    
-
-    
-    let {fullname, email, password} = req.body;
-
-     let createdOwner = await ownerModel.create({
-       fullname,
-       email,
-       password,
-
-     });
-    
-    res.status(201).send(createdOwner)
-
-  });
+  router.post("/create", createOwner);
 }
 
 
 
 
-router.get("/admin", function (req, res) {
-  let success = req.flash("success");
-  res.render("createProducts", { success });
-});
+router.get("/admin", adminDashboard);
+ 
+
+router.get("/admin/create", productCreatePage);
 
 
 

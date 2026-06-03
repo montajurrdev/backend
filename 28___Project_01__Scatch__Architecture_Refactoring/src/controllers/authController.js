@@ -3,59 +3,29 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { generateToken } = require("../utils/generateToken");
 
-module.exports.registerUser = async function (req, res) {
+const { registerUser, loginUser } = require("../services/authService");
+
+module.exports.registerUser = async function (req, res, next) {
   try {
-    let { fullname, email, password } = req.body;
+    const data = await registerUser(req.body);
+    
 
-    let user = await userModel.findOne({email: email})
-    if(user) return res.status(401).send("You already have an account, please login")
-
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(password, salt, async function (err, hash) {
-        if (err) return res.send(err.message);
-        else {
-          let user = await userModel.create({
-            fullname,
-            email,
-            password: hash,
-          });
-
-          let token = generateToken(user);
-          res.cookie("token", token);
-
-          res.redirect("/shop");
-        }
-      });
-    });
+    res.cookie("token", data.token);
+    res.redirect("/shop");
   } catch (err) {
-    res.send(err.message);
+    next(err);
   }
 };
 
+module.exports.loginUser = async function (req, res, next) {
+  let data = await loginUser(req.body);
 
-module.exports.loginUser = async function (req, res){
-    let {email, password} = req.body;
-
-    let user = await userModel.findOne({email:email})
-    if(!user) return res.status(401).send("Email or Password incorrect")
-
-    bcrypt.compare(password, user.password, (err, result)=>{
-        if(result){
-            let token = generateToken(user)
-            res.cookie("token", token)
-            res.redirect("/shop");
-        }
-        else{
-            return res.status(401).send("Email or Password incorrect");
-        }
-    })
-    
+  res.cookie("token", data.token);
+  res.redirect("/shop");
+};
 
 
-}
-
-module.exports.logout = function (req, res){
+module.exports.logout = function (req, res, next) {
   res.cookie("token", "");
   res.redirect("/");
-}
-
+};

@@ -1,61 +1,25 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const isLoggedIn = require('../middlewares/isLoggedIn');
-const productModel = require('../models/product-model');
-const userModel = require('../models/user-model');
+const isLoggedIn = require("../middlewares/isLoggedIn");
+const productModel = require("../models/product-model");
+const userModel = require("../models/user-model");
 
+const {root} = require("../controllers/rootController")
+const {
+  getCart,
+  getShop,
+  getMyAccount,
+  addToCart,
+} = require("../controllers/shopController");
 
-router.get('/', (req, res)=>{
-    let error = req.flash("error")  // array
-    
-    res.render('index', {error, loggedIn: false})
-})
+router.get("/", root )
 
-router.get("/shop", isLoggedIn, async (req, res)=>{
-    let products = await productModel.find();
-    
-    let success = req.flash("success");
-    res.render("shop", { products, success });
-})
+router.get("/shop", isLoggedIn, getShop);
 
-router.get("/cart", isLoggedIn, async (req, res)=>{
+router.get("/cart", isLoggedIn, getCart);
 
-    
-    let user = await userModel.findOne({email: req.user.email}).populate("cart")
-    let bill = null
-    if(user.cart[0]){
+router.get("/myaccount", isLoggedIn, getMyAccount);
 
-        bill = user.cart[0].price + 20 - user.cart[0].discount
-    }
-        
-    res.render("cart", {user,bill});
-})
-
-router.get("/myaccount", isLoggedIn, async (req, res)=>{
-
-    let user = await userModel.findOne({email: req.user.email})
-    
-    res.render("myAccount", {user});
-})
-
-
-
-router.get("/addtocart/:productid", isLoggedIn, async (req, res)=>{
-    let user = await userModel.findOne({email: req.user.email})
-
-    if (user.cart.length > 0) {
-      user.cart.splice(0, user.cart.length);
-    }
-
-    // or instead statement, we can write just 
-    // user.cart = []
-
-    user.cart.push(req.params.productid)
-    await user.save()
-
-    req.flash("success", "Added to cart");
-    (res.redirect("/shop"));
-    
-})
+router.get("/addtocart/:productid", isLoggedIn, addToCart);
 
 module.exports = router;

@@ -7,9 +7,6 @@ const {
 } = require("../controllers/authController");
 
 
-router.get("/", function (req, res) {
-  res.send("hey it's working");
-});
 
 router.post("/register", registerUser);
 
