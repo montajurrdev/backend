@@ -1,0 +1,93 @@
+// Centralized_Error_Handling:
+
+
+specially it's about:
+
+1. AppError (custom error class)
+2. asyncHandler
+3. Global error middleware
+4. next(err)
+5. Proper HTTP status codes
+6. Consistent error responses
+
+
+// AppError class building:
+// why? 
+// current code: 
+catch(err){res.send(err.message)} or throw new Error("user already exists")
+
+# there are no status code, no error type, no Consistency
+# it just send message 
+# And hard to maintain
+
+
+//
+industry solution: custom error class
+# that is contains status code, error message, and status
+# and one central class, handles all error
+
+src/
+├── errors/
+│   └── AppError.js
+
+
+after building this custom Error handler class
+
+# we can send message and status:
+ throw new AppError(message, status)
+
+
+400 = Bad Request  => the user sent data invalid (wrong email without domain, wrong password or incomplete)
+401 = Unauthorized => user is not logged in or token invalid
+403 = Forbidden => user logged in but doesn't have permission (only admin can delete)
+404 = Not Found => requested resource doesn't exist (user/product not found) 
+409 = Conflict => data already exists or conflict with current data (email already exists/ username already taken)
+500 = Internal Server Error => something broke on the Server (db crash) — we don't handle it manually, it handle global middleware
+
+
+//
+// non-enumerable issue => 
+// js Built in Error => Non-enumerable  //so error message => non-enumerable property
+
+// res.send(err) => convert js obj to JSON
+// json only includes enumerable properties, that's why express skip message, stack
+// 
+
+//so, browser doesn't show message, and stack
+// but in terminal => node has  special logic for printing Error obj
+
+// we need to manually send it to browser 
+
+
+
+//
+//
+// Global error middleware
+
+our current errors are handling inside try/catch.
+    res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message, 
+    })
+
+we will have to write this error handler again and again
+in: 
+authController, productController, ownerController, shopController
+that's duplicated issue
+
+
+we will handle it through global Error middleware
+
+src/
+├── middlewares/
+│   └── globalErrorHandler.js
+
+
+# after it
+whole project error will handles within one handler/middleware
+
+# we don't need to write again and again try/catch
+error will pass through next parameter => go next middleware
+
+
+
