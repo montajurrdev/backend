@@ -86,8 +86,56 @@ src/
 # after it
 whole project error will handles within one handler/middleware
 
+# we don't need to handle manually
+try {}
+catch(err){
+   next(err)
+}
+# next(err) forwards error to globalErrorHandler
+
+
+# global middleware sit after all routes/ always last
+
+
+
+
+//
+//
+// but there are have some issue:
+suppose, we have
+15 controller and 40 controller methods
+
+we will write 40 time try/catch
+# we will have to write again and again try/catch and next()
+that's repetitive => not centralized 
+
+# if we remove all try/catch now. server will crash
+
+// because 
+# express doesn't catch that err right now. because 
+# async functions don't automatically forward Error 
+
+
+//
+// there is come 
+// asyncHandler: 
+# which forwards async errors to globalErrorHandler automatically
+
+after that
 # we don't need to write again and again try/catch
+
+src/
+├── utils/
+│   └── asyncHandler.js
+
+
+
+=> we need to forward error to globalErrorHandler
+
+
+
+
+
+
+
 error will pass through next parameter => go next middleware
-
-
-

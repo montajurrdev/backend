@@ -14,7 +14,7 @@ const ownersRouter = require("./routes/ownersRouter");
 const usersRouter = require("./routes/usersRouter");
 const productsRouter = require("./routes/productsRouter");
 
-
+const globalErrorHandler = require("./middlewares/globalErrorHandler")
 
 // middlewares
 app.use(express.json());
@@ -62,6 +62,6 @@ app.use((req, res) => {
 });
 
 // global error handler => routes found but something wrong
-
+app.use(globalErrorHandler);
 
 module.exports = app;
