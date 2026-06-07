@@ -14,7 +14,8 @@ const ownersRouter = require("./routes/ownersRouter");
 const usersRouter = require("./routes/usersRouter");
 const productsRouter = require("./routes/productsRouter");
 
-const globalErrorHandler = require("./middlewares/globalErrorHandler")
+const globalErrorHandler = require("./middlewares/globalErrorHandler");
+const AppError = require("./errors/AppError");
 
 // middlewares
 app.use(express.json());
@@ -47,9 +48,10 @@ app.use("/products", productsRouter);
 
 // test
 app.get("/test", (req, res) => {
-    throw new Error("DB failed");
+    throw new AppError("DB failed", 500);
 
-});
+})
+// express automatically catch synchronous error and send to globalErrorHandler 
 
 // express does not catch async error automatically
 // so server will crash if we visit /test

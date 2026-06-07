@@ -37,8 +37,10 @@ after building this custom Error handler class
  throw new AppError(message, status)
 
 
+// Proper HTTP status codes
+
 400 = Bad Request  => the user sent data invalid (wrong email without domain, wrong password or incomplete)
-401 = Unauthorized => user is not logged in or token invalid
+401 = Unauthorized => user is not logged in or token invalid — authentication failed (email or password invalid)
 403 = Forbidden => user logged in but doesn't have permission (only admin can delete)
 404 = Not Found => requested resource doesn't exist (user/product not found) 
 409 = Conflict => data already exists or conflict with current data (email already exists/ username already taken)
@@ -133,9 +135,26 @@ src/
 => we need to forward error to globalErrorHandler
 
 
+error will pass through next parameter => go next middleware using asyncHandler
 
 
 
+// Express 4 and older version need asyncHandler
+
+// But Express 5 automatically forward error without try/catch, next
+// we don't need to use asyncHandler in new Express 5 project
 
 
-error will pass through next parameter => go next middleware
+internally process it :
+Promise.resolve(fn(req, res, next)).catch(next)
+
+
+Express automatically catch Synchronous error. even at express 4
+
+Synchronous route
+    ↓
+No asyncHandler needed
+
+Async route
+    ↓
+Use asyncHandler

@@ -1,22 +1,20 @@
 const shopService = require("../services/shopService");
+const asyncHandler = require("../utils/asyncHandler");
 
-module.exports.getCart = async (req, res, next) => {
-  try {
+module.exports.getCart = asyncHandler(async (req, res) => {
+
     const {user, bill} = await shopService.getCart(req.user.email);
 
     res.render("cart", { user, bill });
-  } catch (err) {
-    next(err);
-  }
-};
+
+})
+
 
 module.exports.getShop = async (req, res, next) => {
   const {products} = await shopService.getShop();
 
   let success = req.flash("success");
 
-
-  
   res.render("shop", { products, success });
 };
 
