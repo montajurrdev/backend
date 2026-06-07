@@ -1,0 +1,13 @@
+Validation means =>  Never trust data coming from client
+user can send unnecessary/unsafe data
+
+now: 
+Request → Controller → Service → Database
+
+
+after validation:
+Request → Validation Middleware → Controller → Service → Database
+
+
+first we learn => custom validator with js
+after that => joi
