@@ -1,0 +1,34 @@
+Validation means =>  Never trust data coming from client
+user can send unnecessary/unsafe data
+
+now: 
+Request → Controller → Service → Database
+
+
+after validation:
+Request → Validation Middleware → Controller → Service → Database
+
+
+first we learn => custom validator with js
+after that => joi
+
+
+src/
+├── validators/
+│   └── authValidator.js
+
+
+//
+custom validator => 
+
+# has maintaining and expending issue when project grow
+# a lot of work
+# array validation => more code
+# nested obj => much more code
+
+
+libraries save time, prevent bug and reduce complexity 
+
+
+
+// joi npm
