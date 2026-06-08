@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const { generateToken } = require("../utils/generateToken");
 const AppError = require("../errors/AppError")
 
-
 module.exports.registerUser = async (data) => {
   let { fullname, email, password } = data;
 

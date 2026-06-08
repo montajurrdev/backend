@@ -11,3 +11,9 @@ Request → Validation Middleware → Controller → Service → Database
 
 first we learn => custom validator with js
 after that => joi
+
+
+src/
+├── validators/
+│   └── authValidator.js
+
