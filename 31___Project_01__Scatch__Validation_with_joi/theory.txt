@@ -20,6 +20,7 @@ src/
 
 //
 custom validator => 
+rules(schema) create => validation => middleware => use before controller
 
 # has maintaining and expending issue when project grow
 # a lot of work
@@ -32,3 +33,24 @@ libraries save time, prevent bug and reduce complexity
 
 
 // joi npm
+
+joi simplify the validation
+
+=> create schema with joi => 
+
+
+// joi already know how to validate
+// we don't need to validate manually like custom validator
+// if (!fullname) ...
+// if (fullname.length < 3) ...
+// if (!email.includes("@")) ...
+
+// so joi automatically validate data. and schema just a set of rules
+
+
+
+// joi:
+# Stop validation after the first error. that's why we can see just one error message
+abortEarly: true
+# Error message in terminal =>Nodejs show it in a special way
+
