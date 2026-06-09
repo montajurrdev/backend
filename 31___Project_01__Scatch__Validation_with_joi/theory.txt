@@ -75,8 +75,44 @@ joi simplify the validation
 => Array of Error - industry standard => easier for react/frontend developer
 
 
+
 real APIs usually return validation errors => errors array
 
 # because, react form => show the error under each field
 # we can simply use array error. but giant string need to parse
 
+
+//
+// return an array of error:
+# Now we can just send a string as error message
+
+// for sending Array:
+# we need to change => 
+             globalErrorHandler - AppError - validate middleware
+because they are related handler 
+
+
+joi give us => error => message, original, details
+details => array of all errors => inside error obj (message)
+
+
+so, all message => push => error array => AppError => globalErrorHandler
+error.details.map(detail => detail.message) => map return a array of result
+
+
+now AppError => arg(message, status)  we need an array arg inside AppError
+
+after that AppError(message, status, error array)
+
+then we handle it inside globalErrorHandler
+
+
+// before 
+// new AppError("Validation failed", 400);
+
+// after
+// new AppError("Validation failed", 400, ["error1", "error2"]);
+
+
+// last update globalErrorHandler
+// now err have 3 arguments => need to declare at handler

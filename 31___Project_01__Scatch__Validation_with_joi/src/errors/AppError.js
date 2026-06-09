@@ -1,5 +1,5 @@
 class AppError extends Error {
-  constructor(message, statusCode) {
+  constructor(message, statusCode, errors = []) {
     super(message);
     // internally set => this.message = message, why super => it's constructor of Error(message)
 
@@ -7,11 +7,24 @@ class AppError extends Error {
 
     this.status = `${statusCode}`.startsWith("4") ? "fail" : "error"; // ternary operator
 
+    this.errors = errors;
+
     Error.captureStackTrace(this, this.constructor);
   }
 }
 
 module.exports = AppError
+
+
+// error = []  for validation => for return an array of error
+
+// before 
+// new AppError("Validation failed", 400);
+
+// after
+// new AppError("Validation failed", 400, ["error1", "error2"]);
+
+
 
 // class => create a class
 // AppError => class name AppError
