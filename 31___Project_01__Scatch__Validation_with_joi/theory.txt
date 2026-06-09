@@ -49,8 +49,34 @@ joi simplify the validation
 
 
 
+// # Error message in terminal =>Nodejs show it in a special way
+
+
+
+//
+// joi error just send message. no status code
+// that's why joi Error => convert => AppError
+
 // joi:
-# Stop validation after the first error. that's why we can see just one error message
-abortEarly: true
-# Error message in terminal =>Nodejs show it in a special way
+// # Stop validation after the first error. that's why we can see just one error message
+// abortEarly: true
+
+// we can change it to => abortEarly: false, means
+// Don't stop at the first error.
+// Collect all errors.
+
+
+//
+// production APIs:
+// for return Error message => 3 options
+=> just one error => easier - joi default
+
+=> one long error(multiple message) => work, but hard for frontend developer
+=> Array of Error - industry standard => easier for react/frontend developer
+
+
+real APIs usually return validation errors => errors array
+
+# because, react form => show the error under each field
+# we can simply use array error. but giant string need to parse
 

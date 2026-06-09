@@ -32,7 +32,7 @@ module.exports.registerUser = async (data) => {
 
 module.exports.loginUser = async (data) => {
   let { email, password } = data;
-
+  
   let user = await userModel.findOne({ email });
   if (!user) throw new AppError("Email or Password incorrect", 401);  // unauthorized user
 

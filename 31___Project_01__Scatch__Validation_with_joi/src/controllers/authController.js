@@ -12,6 +12,7 @@ module.exports.registerUser = asyncHandler(async function (req, res) {
 module.exports.loginUser = asyncHandler(async function (req, res) {
   let { token } = await authService.loginUser(req.body);
 
+  
   res.cookie("token", token);
   res.redirect("/shop");
 });
@@ -22,7 +23,7 @@ module.exports.logout = asyncHandler(function (req, res) {
 });
 
 
-
+ 
 
 
 // const { registerSchema } = require("../validators/authValidator");
