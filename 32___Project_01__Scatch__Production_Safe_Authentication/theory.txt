@@ -1,0 +1,9 @@
+Target:
+HTTP-only cookies
+Secure cookie settings
+Proper login/logout flow
+Refresh token concepts
+Authentication middleware improvements
+RBAC basics
+
+

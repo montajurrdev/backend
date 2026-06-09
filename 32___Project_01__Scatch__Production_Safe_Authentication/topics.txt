@@ -1,0 +1,44 @@
+Current:
+JWT in cookie
+
+Target:
+HTTP-only cookies
+Secure cookie settings
+Proper login/logout flow
+Refresh token concepts
+Authentication middleware improvements
+RBAC basics
+
+
+// this authentication much closer to what real applications use
+
+// Not full production ready - because, "production-ready" is not a single thing. It's layers.
+for example:
+Access Token
+Refresh Token Rotation
+Redis Session Store
+Device Tracking
+Token Revocation Lists
+OAuth 2.0
+OpenID Connect
+CSRF Double Submit Cookies
+SameSite=None + Secure
+Key Rotation
+Multi-factor Authentication
+
+
+
+// Our Goal is just production Safe Authentication for this project
+
+
+// not needed for this project right now
+OAuth (Google Login)
+Refresh Token Rotation
+Redis Sessions
+Multi-device Login
+MFA/2FA
+SSO
+Microservice Auth
+
+We don't need Netflix-level authentication to be "production-ready."
+
