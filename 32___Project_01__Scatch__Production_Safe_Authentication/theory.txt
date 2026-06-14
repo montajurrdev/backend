@@ -118,3 +118,86 @@ sameSite: "none" => Allows cross-site cookies. Usually used when:
 Frontend: app.example.com => react Frontend
 Backend: api.example.com => express API
 or deferent domains
+
+
+
+Current security level:
+✓ HttpOnly
+✓ Secure (HTTPS in production)
+✓ SameSite protection
+
+
+
+// maxAge (Session Lifetime)
+decide how long a user stay logged in
+
+now
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "strict",
+});
+
+without declared - it means:
+=> Cookie expires when the browser Session ends. => user closes browser => logged out
+this is called Session Cookie
+
+
+
+# we have two choice:
+
+option 1 : Session Cookie 
+=> more secure. but users may get annoyed. because need to login after closes browser
+
+
+option 2: Persistent Cookie (store cookie for a time) 
+=> User closes browser => Comes back tomorrow => still logged in
+better user experience
+
+How? => add 
+maxAge: time(millisecond)
+
+for 7 days
+maxAge: 7 * 24 * 60 * 60 * 1000 
+
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "strict",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
+
+
+it means: 
+after 7 days => Browser automatically removes the cookie
+
+
+//
+// Important Production Concept
+
+JWT also has an expiration:
+jwt.sign(payload, secret, {
+  expiresIn: "7d",
+});
+
+this means: after 7d, that jwt token will be invalid => jwt will not accept it
+
+
+# that's why: Cookie expiration and jwt expiration need to be match
+
+
+otherwise: 
+# Cookie exists but JWT is invalid 
+# JWT valid but cookie disappeared
+
+So Recommended Setup: 
+JWT: expiresIn: "7d"
+Cookie: maxAge: 7 * 24 * 60 * 60 * 1000
+
+
+
+//
+//
+// Authentication Middleware Review (isLoggedIn)
+
+

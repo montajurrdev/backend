@@ -7,7 +7,8 @@ module.exports.registerUser = asyncHandler(async function (req, res) {
   res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict"
+    sameSite: "strict",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.redirect("/shop");
 });
@@ -19,7 +20,8 @@ module.exports.loginUser = asyncHandler(async function (req, res) {
   res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict"
+    sameSite: "strict",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.redirect("/shop");
 });
