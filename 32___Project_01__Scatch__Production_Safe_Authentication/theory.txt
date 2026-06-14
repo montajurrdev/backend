@@ -7,3 +7,114 @@ Authentication middleware improvements
 RBAC basics
 
 
+
+=> JWT token stored inside the browser cookie
+
+
+// HTTP-only cookies
+can be sent to the server,
+But cannot accessed by JavaScript running in the browser.
+
+
+Normal Cookie => res.cookie("token", "abc123"); => Browser JavaScript can read it 
+=> document.cookie => output: token=abc123
+=> it is not explicitly protected => relying on Express default
+
+
+httpOnly Cookie => res.cookie("token", "abc123", { httpOnly: true }); => browser still stores the cookie and send it automatically to server 
+=> but browser JavaScript cannot access it => document.cookie => output: "" => empty
+
+
+it is useful to protect against XSS attacks(Cross-Site Scripting)
+
+=> if jwt token is stored in a normal cookie => the attacker can steal it
+=> but if it's an httpOnly cookie => the attacker fails
+
+
+
+Current protection level:
+✓ JWT stored in cookie
+✓ HttpOnly enabled
+✓ Protected from document.cookie theft
+
+
+
+//
+// Secure cookie settings
+
+// Secure 
+Only send this cookie over HTTPS
+
+
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+});
+
+http => cookie Not sent 
+https => cookie sent
+
+
+But during development, we use localhost:3000 => that is http
+Not https
+if we set secure:true, login/resister may stop working locally because browser refuses to send the cookie
+
+that's why we do, 
+secure: process.env.NODE_ENV === "production"
+
+Development → secure = false
+Production → secure = true
+
+
+
+Current protection level:
+✓ JWT in cookie
+✓ HttpOnly
+✓ HTTPS-only in production
+
+
+// sameSite
+decide which applications can access and use jwt token  
+
+
+suppose: anyone logged in shop.com => after that visit evil.com
+browser automatically sends  shop.com's cookie → evil.com request
+
+=> this is called CSRF (Cross-Site Request Forgery) => attacker use it
+
+
+sameSite: "strict"
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "strict",
+});
+
+
+sameSite: "strict" do:
+Only send this cookie when the request originates from this same site.
+
+
+
+req from shop.com → cookie: shop.com's
+✓ Cookie sent
+
+req from evil.com → cookie shop.com's
+✗ Cookie blocked
+
+
+
+// Types of sameSite
+sameSite: "strict" => Most secure. Cookie only works on your own/same site. 
+=> like ejs e-commerce project. 
+because Frontend and backend are the same application.
+
+
+
+sameSite: "lax" => A bit more relaxed. Allows some safe navigations. Very common.
+
+
+sameSite: "none" => Allows cross-site cookies. Usually used when:
+Frontend: app.example.com => react Frontend
+Backend: api.example.com => express API
+or deferent domains
