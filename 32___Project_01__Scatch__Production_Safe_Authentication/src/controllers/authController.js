@@ -31,13 +31,3 @@ module.exports.logout = asyncHandler(function (req, res) {
   res.redirect("/");
 });
 
-// const { registerSchema } = require("../validators/authValidator");
-// const AppError = require("../errors/AppError");
-
-// const { error } = registerSchema.validate(req.body);
-
-// console.log(error);
-
-// if (error) {
-//   throw new AppError(error.message, 400);
-// }

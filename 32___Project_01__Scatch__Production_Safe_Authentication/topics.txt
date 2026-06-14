@@ -42,3 +42,9 @@ Microservice Auth
 
 We don't need Netflix-level authentication to be "production-ready."
 
+
+1. Secure Cookies              
+2. Authentication Middleware Review
+3. Proper Logout
+4. Better Login/Register Flow
+5. RBAC (Role-Based Access Control)

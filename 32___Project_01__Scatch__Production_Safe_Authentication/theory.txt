@@ -200,4 +200,13 @@ Cookie: maxAge: 7 * 24 * 60 * 60 * 1000
 //
 // Authentication Middleware Review (isLoggedIn)
 
+// there are some issue:
+// try/catch => we have asyncHandler + globalErrorHandler
+// flash + redirect => for ssr applications it is acceptable. => for APIs would used. but need to polished
+
+// since it is ejs project => that's why we will keep flash + redirect => and need  try/catch
+
+// admin delete User after token issued => user sends old JWT =>so user null, req.user = null
+
+// USing Email => email can change. but id never changes => findById is faster
 
