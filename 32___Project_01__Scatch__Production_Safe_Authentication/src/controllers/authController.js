@@ -27,7 +27,36 @@ module.exports.loginUser = asyncHandler(async function (req, res) {
 });
 
 module.exports.logout = asyncHandler(function (req, res) {
-  res.cookie("token", "");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict"
+  })
+
+  req.flash("success", "Logged out successfully");
   res.redirect("/");
 });
+
+
+
+// logout:  now, res.cookie("token", ""); or we can use => res.clearCookie("token");
+
+// how does logout work:
+// we can't destroy the jwt itself => because jwt is stateless 
+// once issued => jwt exists until it expires
+
+// we simply remove the cookie from browser
+// browser => no token cookie => User is effectively logged out
+
+
+// good practice => to use same cookie options that were used when creating the cookie
+
+// res.clearCookie("token", {
+//   httpOnly: true,
+//   secure: process.env.NODE_ENV === "production",
+//   sameSite: "strict",
+// });
+
+
+// this is enough for current ejs project => jwt + cookie + ejs
 

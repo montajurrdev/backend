@@ -50,6 +50,7 @@ app.use("/products", productsRouter);
 app.get("/test", (req, res) => {
     throw new AppError("DB failed", 500);
 
+
 })
 // express automatically catch synchronous error and send to globalErrorHandler 
 
