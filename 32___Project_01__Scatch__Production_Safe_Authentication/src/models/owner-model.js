@@ -8,6 +8,10 @@ const ownerSchema = mongoose.Schema({
   },
   email: String,
   password: String,
+  role: {
+    type: String,
+    default: "owner",
+  },
   product: {
     type: Array,
     default: [],

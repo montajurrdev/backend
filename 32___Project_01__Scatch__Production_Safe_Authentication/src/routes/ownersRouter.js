@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router(); // it handles routing
 
 const ownerController = require("../controllers/ownerController");
+const authorize = require("../middlewares/authorize");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 
 
 // this routes will run till env variable is development
@@ -12,10 +14,10 @@ if (process.env.NODE_ENV === "development") {
 
 
 
-router.get("/admin", ownerController.adminDashboard);
+router.get("/admin",isLoggedIn, authorize("admin", "owner"), ownerController.adminDashboard);
  
 
-router.get("/admin/create", ownerController.productCreatePage);
+router.get("/admin/create",isLoggedIn, authorize("admin", "owner"), ownerController.productCreatePage);
 
 
 

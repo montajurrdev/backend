@@ -2,7 +2,6 @@ const productModel = require("../models/product-model");
 const ownerModel = require("../models/owner-model");
 const AppError = require("../errors/AppError");
 
-
 module.exports.createOwner = async (data) => {
 
   let owners = await ownerModel.find();
@@ -12,6 +11,7 @@ module.exports.createOwner = async (data) => {
   }
 
   let { fullname, email, password } = data;
+
 
   let createdOwner = await ownerModel.create({
     fullname,

@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router(); // it handles routing
 const upload = require("../config/multer-config");
+const isLoggedIn = require("../middlewares/isLoggedIn")
 
 const productController = require("../controllers/productController");
+const authorize = require("../middlewares/authorize");
 
-router.post("/create", upload.single("image"), productController.createProduct);
+router.post("/create", isLoggedIn, authorize("admin", "owner"), upload.single("image"), productController.createProduct);
 
 
 

@@ -43,8 +43,22 @@ Microservice Auth
 We don't need Netflix-level authentication to be "production-ready."
 
 
-1. Secure Cookies              
+Target:
+HTTP-only cookies
+Secure cookie settings
+Proper login/logout flow
+Refresh token concepts
+Authentication middleware improvements
+RBAC basics
+
+
+1. Secure Cookies  settings
+=> HTTP-only cookies, secure, sameSite, maxAge     
+
 2. Authentication Middleware Review
-3. Proper Logout
-4. Better Login/Register Flow
-5. RBAC (Role-Based Access Control)
+3. Proper Logout:
+4. RBAC (Role-Based Access Control)
+ 
+ 
+Better Login/Register Flow => real production practice 
+i already have best practice: validation => controller => service => jwt, hash, count

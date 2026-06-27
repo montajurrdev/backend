@@ -248,3 +248,41 @@ Multi-device Logout
 
  after that this become insufficient.
 because then we can invalidate tokens server-side.
+
+
+
+//
+//
+// RBAC (Role-Based Access Control)
+
+# Different users have different permissions.
+Customer → Buy products
+Admin    → Manage products
+Owner    → Full access
+
+# when a user want to perform something. we do it.
+
+instead of: Logged in? → allow everything
+we do: logged in? → check role → allow or deny
+
+
+
+# first need to update userModel:
+add role: user or admin
+
+# we can add in every route after isLoggedIn middleware
+=> role check callback function
+  (req, res, next) => {
+    const roles = ["user", "admin"]
+    if (!roles.includes(req.user.role)) {
+      return next(new AppError("not authorized"));
+
+    }
+    next()
+  }
+
+
+
+# authorize middleware => check user role (user, admin, owner)
+for centralized and avoid repetition
+
