@@ -1,0 +1,8 @@
+Folder structure improvements
+Naming issues
+Repeated code
+Configuration improvements
+Service/controller quality
+Middleware quality
+Utility improvements
+Overall production-readiness
