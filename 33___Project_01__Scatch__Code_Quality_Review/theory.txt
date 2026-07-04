@@ -1,0 +1,21 @@
+Folder structure improvements
+
+Naming issues
+=>  mongoose-connection.js && multer-config.js => database.js && multer.js
+
+
+Repeated code
+=> cookie options are repeated in register, login, logout => 
+
+=> src/config/cookieOptions.js
+
+
+Configuration improvements
+Service/controller quality
+Middleware quality
+Utility improvements
+Overall production-readiness
+
+
+# Business Constants
+=> "user" "admin" "token" => magic strings => src/constants/roles.js

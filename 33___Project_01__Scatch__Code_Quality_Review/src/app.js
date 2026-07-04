@@ -6,7 +6,7 @@ const path = require("path");
 
 const app = express();
 
-require("./config/mongoose-connection");
+require("./config/database");
 
 // routes
 const index = require("./routes/index");

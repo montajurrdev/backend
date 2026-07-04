@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const authorize = require("../middlewares/authorize")
+const ROLES = require("../constants/roles")
+
 
 const rootController = require("../controllers/rootController");
 const shopController = require("../controllers/shopController");
@@ -9,7 +11,7 @@ const shopController = require("../controllers/shopController");
 
 router.get("/", rootController.root);
 
-router.get("/shop", isLoggedIn, authorize("user"), shopController.getShop);
+router.get("/shop", isLoggedIn, authorize(ROLES.USER), shopController.getShop);
 
 router.get("/cart", isLoggedIn, shopController.getCart);
 
