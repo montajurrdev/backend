@@ -4,6 +4,7 @@ const expressSession = require("express-session");
 const flash = require("connect-flash");
 const path = require("path");
 
+
 const app = express();
 
 require("./config/database");
@@ -16,6 +17,8 @@ const productsRouter = require("./routes/productsRouter");
 
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
 const AppError = require("./errors/AppError");
+const env = require("./config/env")
+
 
 // middlewares
 app.use(express.json());
@@ -26,7 +29,7 @@ app.use(
   expressSession({
     resave: false,
     saveUninitialized: false,
-    secret: process.env.EXPRESS_SESSION_SECRET,
+    secret: env.sessionSecret,
   }),
 );
 

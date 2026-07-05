@@ -6,14 +6,43 @@ Naming issues
 
 Repeated code
 => cookie options are repeated in register, login, logout => 
-
 => src/config/cookieOptions.js
 
 
 Configuration improvements
-Service/controller quality
+
+// Service/controller quality
+
+=> most of the service layer look like:
+exports.registerUser = async (data) => {
+
+    // Validation
+
+    // Database
+
+    // Hash
+
+    // Create User
+
+    // Generate Token
+
+    return { token };
+
+}
+
+services are doing multiple jobs. it good. but if we add more login/register system after a moment
+it will become 300+ line code inside one service.
+
+industry solution => Break business logic into small private functions.
+
+
+
+
 Middleware quality
-Utility improvements
+
+// Utility improvements
+=> move bcrypt => utils/password.js
+
 Overall production-readiness
 
 

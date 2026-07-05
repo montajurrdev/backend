@@ -1,46 +1,57 @@
 const userModel = require("../models/user-model");
-const bcrypt = require("bcrypt");
-const { generateToken } = require("../utils/generateToken");
-const AppError = require("../errors/AppError")
+const { generateAccessToken } = require("../utils/jwt");
+const AppError = require("../errors/AppError");
+const { hashPassword, comparePassword } = require("../utils/password");
+
+async function checkExistingUser(email) {
+  let user = await userModel.findOne({ email });
+  if (user) throw new AppError("You already have an account", 409);
+}
+
+// async function hashPassword(password) {
+//   // const salt = await bcrypt.genSalt(10)
+//   // Internally, bcrypt.hash(password, 10):
+
+//   // Generates the salt.
+//   // Hashes the password.
+//   // Returns a Promise.
+
+//   // So genSalt() is unnecessary unless you specifically need the salt for another purpose.
+
+//   return await bcrypt.hash(password, 10);
+// }
+
+async function createUser(data) {
+  return await userModel.create(data);
+}
 
 module.exports.registerUser = async (data) => {
-  let { fullname, email, password } = data;
+  let { email, password } = data;
 
-  let user = await userModel.findOne({ email });
-  if (user) {
-    throw new AppError("You already have an account", 409);
-    }
+  await checkExistingUser(email);
 
-  return new Promise((resolve, reject) => {
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(password, salt, async function (err, hash) {
-        if (err) return reject(err);
+  const hash = await hashPassword(password);
 
-        let user = await userModel.create({
-          fullname,
-          email,
-          password: hash,
-        });
+  const user = await createUser({ ...data, password: hash });
 
-        let token = generateToken(user);
+  // the spread operator (...) copies every property from data
 
-        resolve({ token });
-      });
-    });
-  });
+  let token = generateAccessToken(user);
+
+  return { token };
 };
 
 module.exports.loginUser = async (data) => {
   let { email, password } = data;
-  
-  let user = await userModel.findOne({ email });
-  if (!user) throw new AppError("Email or Password incorrect", 401);  // unauthorized user
 
-  const result = await bcrypt.compare(password, user.password);
+  let user = await userModel.findOne({ email });
+  if (!user) throw new AppError("Email or Password incorrect", 401); // unauthorized user
+
+  const result = await comparePassword(password, user.password);
 
   if (!result) throw new AppError("Email or Password incorrect", 401); // authentication failed
 
-  let token = generateToken(user);
+  let token = generateAccessToken(user);
 
   return { token };
 };
