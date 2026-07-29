@@ -1,0 +1,34 @@
+SSR Improvement Sprint
+
+1. Product Search
+
+# added Search input form at the top of shop.ejs
+=> method ="get" action="/shop" => when we will search anything, browser will add automatically query parameter.
+ /shop?search=iphone
+ this is called query parameter
+ ?search=iphone&page=2   => query string => everything inside is a string
+
+
+# express concept => req.query
+express convert query string to object => 
+req.query = {
+    search: "iphone",
+    page: "2"
+}
+
+even number  becomes string 
+
+
+# after (?) everything is query string
+# after domain everything is params
+
+# form submit => when method post => form data is gone through urlencoded
+# form submit => when method get => form data is become query parameter
+
+// regex search implemented
+
+
+2. Pagination
+3. User Profile
+4. Change Password
+5. Better Product Management

@@ -1,7 +1,6 @@
 const userModel = require("../models/user-model");
 const productModel = require("../models/product-model");
 
-
 module.exports.getCart = async (email) => {
   let user = await userModel.findOne({ email }).populate("cart");
   let bill = 0;
@@ -12,31 +11,37 @@ module.exports.getCart = async (email) => {
   return { user, bill };
 };
 
-module.exports.getShop = async () => {
-  let products = await productModel.find()
-  
-  return { products };
+module.exports.getShop = async (search) => {
+  const query = {};
+
+  if (search) {
+    query.name = {
+      $regex: search,
+      $options: "i",
+    };
+  }
+
+  let products = await productModel.find(query);
+
+  return { products, productCount: products.length };
 };
 
-module.exports.addToCart = async (email,id) => {
+module.exports.addToCart = async (email, id) => {
+  let user = await userModel.findOne({ email });
 
-    let user = await userModel.findOne({ email});
+  if (user.cart.length > 0) {
+    user.cart.splice(0, user.cart.length);
+  }
 
-    if (user.cart.length > 0) {
-      user.cart.splice(0, user.cart.length);
-    }
+  // or instead statement, we can write just
+  // user.cart = []
 
-    // or instead statement, we can write just
-    // user.cart = []
-
-    user.cart.push(id);
-    await user.save();
-
+  user.cart.push(id);
+  await user.save();
 };
 
+module.exports.getMyAccount = async (email) => {
+  let user = await userModel.findOne({ email });
 
-  module.exports.getMyAccount = async (email) => {
-     let user = await userModel.findOne({ email});
-
-    return { user};
-  };
+  return { user };
+};

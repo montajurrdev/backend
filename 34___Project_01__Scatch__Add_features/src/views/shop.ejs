@@ -7,9 +7,36 @@
         </span>
       </div>
     <%} %>
+    
     <div class="w-full h-screen flex items-start p-20">
       <div class="w-1/4 h-screen flex flex-col items-start">
-        <div class="flex items-center gap-2">
+        <div>
+          <form action="/shop" method="GET" class="mb-4">
+    <div class="flex gap-2">
+        <input
+            type="text"
+            name="search"
+            value=""
+            placeholder="Search products..."
+            class="w-full rounded border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+
+        <button
+            type="submit"
+            class="rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
+        >
+            Search
+        </button>
+      </div>
+    </form>
+    <a
+        href="/shop"
+        class="rounded bg-gray-500 px-5 py-2 text-white hover:bg-gray-600"
+    >
+        Clear
+    </a>
+        </div>
+        <div class="flex items-center gap-2 mt-10">
           <h3>sort</h3>
           <form action="">
             <select class="border-[1px] px-2 py-1" name="sortby">
@@ -30,7 +57,29 @@
         </div>
       </div>
       <div class="w-3/4 flex flex-col h-screen">
+        <% if(productCount === 0){ %>
+          <div class="rounded-lg border border-yellow-300 bg-yellow-50 p-4 mb-6">
+    <h2 class="text-lg font-semibold text-yellow-700">
+        No products found
+    </h2>
+
+    <p class="text-sm text-gray-600 mt-1">
+        Try searching with another keyword.
+    </p>
+</div>
+
+        <% } %>
+
+                <div class="flex items-center justify-between mb-4">
+
+    <h2 class="text-lg font-semibold">
+       <%= productCount %> Product<%= productCount !== 1 ? "s" : "" %> Found
+    </h2>
+
+</div>
+
         <div class="flex items-start gap-5 flex-wrap">
+
           <% products.forEach((product)=>{%>            
             <div id="product" class="w-60">
               <div
@@ -61,6 +110,8 @@
 
 
         </div>
+
+
       </div>
     </div>
 
