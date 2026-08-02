@@ -26,9 +26,174 @@ even number  becomes string
 # form submit => when method get => form data is become query parameter
 
 // regex search implemented
+// productCount
+
+
 
 
 2. Pagination
+it introduces skip(), limit(), page, pagesSize, totalPage, currentPage
+
+Lesson 1  Why Pagination?
+=> Suppose db has 5000 products
+current code  const products = await productModel.find() => mongoDB return 5000 documents
+# slow db query
+# more memory usage
+# slower server
+# large html response
+# poor user experience
+
+industry solution => instead of returning 5000 products => return 12 products per page
+
+How does MongoDB know which products belong to Page 2?
+=> Using two methods. skip(), limit()
+
+
+
+Lesson 2  Understanding skip() & limit()
+=> productModel.find().limit(5) => mongoDB returns 5 products
+=> productModel.find().skip(5) => mongodb skip 5 products, and start from 6
+
+combine them:
+productModel.find().skip(5).limit(5) => skip first 5, and return next 5
+productModel.find().skip(10).limit(5) => skip first 10, and return next 5
+
+
+How do we know how many products to skip? if user request page 7
+=> That's where the most important pagination formula comes in.
+
+
+Lesson 3  Page Calculation - Deriving the Formula
+
+Products per page = 10
+If Page 1 shows products 1–10, how many were skipped? 0
+If Page 2 shows products 11–20, how many were skipped? 10
+Page 1 → Skip 0
+Page 2 → Skip 10
+Page 3 → Skip 20
+Page 4 → Skip 30
+
+pattern:  Skip = (Page Number - 1) × Products Per Page
+
+so this is the universal pagination formula.
+skip = (page - 1) * limit
+
+/// req.query always returns strings.
+
+Controller just receive request and coordinates.
+Service contains business logic
+
+Calculating pagination is business logic, so it belongs in service.
+Controller just bypass page number through service function
+
+const page = Number(req.query.page) || 1;
+
+
+
+Lesson 4  Service Implementation
+
+const limit = 8;
+const skip = (page - 1) * limit;
+
+const products = await productModel
+    .find(query)
+    .skip(skip)
+    .limit(limit);
+
+Now only one page is returned.
+
+
+// 100 Products => page size 8 => user opens Page 4
+=> how application know, how many page have or need there?
+
+=> How does application know there are 13 pages => Because right now we only fetched 8 products
+=> We don't know how many exist in total.
+That's why we need another MongoDB query. => countDocuments()
+
+// countDocuments()
+await productModel.countDocuments(query); => it provides, number of documents/products
+
+=> without the query => it will always count all products
+
+// Calculate Total Pages
+=> Suppose 18 Products => limit 8 => How many pages?  3.25, but page can't be decimal
+=> We round up with js => Math.ceil(18/8) => result 3
+=> another example 80/8 = result 10
+
+
+now about the pages view:
+Previous
+1 2 3 4 5
+Next
+
+for this 
+service return: 
+=> instead of: return { products } => Return everything the UI needs.
+It needs more information.
+
+return {
+    products,
+    productCount: totalProducts,
+
+    currentPage: page,
+
+    totalPages,
+
+    limit,
+
+    search, 
+};
+
+
+
+Lesson 5  Controller
+
+Lesson 6  EJS UI
+
+Previous
+1   2   3   4   5
+Next
+
+page number can't be hardcoded => That's wrong because tomorrow we might have 20 pages.
+Instead, we'll generate them dynamically.
+
+Instead: we will use loop since we have totalPages
+
+// Highlight Current Page
+How does the user know they're on Page 3?
+=> We compare: page === currentPage
+
+
+
+Lesson 7  Previous / Next Buttons
+=> <% if (currentPage < totalPages) { %>
+
+<a
+    href="/shop?page=<%= currentPage + 1 %>"
+    class="rounded border px-4 py-2 hover:bg-gray-100"
+>
+    Next →
+</a>
+
+<% } %>
+
+
+
+Lesson 8  Keep Search + Pagination Together
+
+
+// The Hidden Bug
+=> suppose we searched iphone => after that we gone page 2 or 3 => application will generate code like this
+/shop?page=2       there are no search=iphone   it disappeared
+so page 2 will show all products, not just iphones
+
+
+industry solution:
+ Every pagination link must preserve the current search.
+
+ href="/shop?search=<%= search %>&page=<%= page %>"
+
+
 3. User Profile
 4. Change Password
 5. Better Product Management

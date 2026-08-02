@@ -11,13 +11,16 @@ module.exports.getCart = asyncHandler(async (req, res) => {
 
 
 module.exports.getShop = async (req, res, next) => {
+
   const search = req.query.search?.trim();
+  const page = Number(req.query.page) || 1
+
   
-  const {products, productCount} = await shopService.getShop(search);
+  const data = await shopService.getShop(search, page);
 
   let success = req.flash("success");
 
-  res.render("shop", { products, productCount, search, success });
+  res.render("shop", { data, success });
 };
 
 module.exports.addToCart = async (req, res, next) => {

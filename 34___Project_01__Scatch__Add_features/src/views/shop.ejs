@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="w-3/4 flex flex-col h-screen">
-        <% if(productCount === 0){ %>
+        <% if(data.productCount === 0){ %>
           <div class="rounded-lg border border-yellow-300 bg-yellow-50 p-4 mb-6">
     <h2 class="text-lg font-semibold text-yellow-700">
         No products found
@@ -73,14 +73,14 @@
                 <div class="flex items-center justify-between mb-4">
 
     <h2 class="text-lg font-semibold">
-       <%= productCount %> Product<%= productCount !== 1 ? "s" : "" %> Found
+       <%= data.productCount %> Product<%= data.productCount !== 1 ? "s" : "" %> Found
     </h2>
 
 </div>
 
         <div class="flex items-start gap-5 flex-wrap">
 
-          <% products.forEach((product)=>{%>            
+          <% data.products.forEach((product)=>{%>            
             <div id="product" class="w-60">
               <div
                 class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]"
@@ -111,6 +111,37 @@
 
         </div>
 
+<div class="mt-8 flex items-center justify-center gap-2">
+
+  <% if(data.currentPage > 1){%> 
+  <a href="/shop?search=<%= data.search %>&page=<%= data.currentPage - 1 %>"
+    class="rounded border px-4 py-2 hover:bg-gray-100"
+    >
+      ← Previous
+  </a>
+  
+    <% } %>
+
+    <% for(let page = 1; page <= data.totalPages; page++){ %>
+
+        <a
+            href="/shop?search=<%= data.search %>&page=<%= page %>"
+            class="rounded border px-4 py-2 <%= page === data.currentPage ? "bg-blue-500" : "hover:bg-gray-100" %> "
+        >
+            <%= page %>
+        </a>
+
+    <% } %>
+
+    <% if(data.currentPage < data.totalPages){ %> 
+    <a href="/shop?search=<%= data.search %>&page=<%= data.currentPage + 1 %>"
+      class="rounded border px-4 py-2 hover:bg-gray-100"
+      >
+      Next →
+    </a>
+      <% } %>
+
+</div>
 
       </div>
     </div>

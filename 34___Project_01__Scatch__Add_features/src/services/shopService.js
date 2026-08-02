@@ -11,7 +11,8 @@ module.exports.getCart = async (email) => {
   return { user, bill };
 };
 
-module.exports.getShop = async (search) => {
+module.exports.getShop = async (search, page) => {
+  // product search
   const query = {};
 
   if (search) {
@@ -21,9 +22,24 @@ module.exports.getShop = async (search) => {
     };
   }
 
-  let products = await productModel.find(query);
+  // pagination
+  const limit = 3;
+  const skip = (page - 1) * limit;
 
-  return { products, productCount: products.length };
+  let products = await productModel.find(query).skip(skip).limit(limit);
+
+  const totalProducts = await productModel.countDocuments(query);
+
+  const totalPages = Math.ceil(totalProducts / limit);
+
+  return {
+    products,
+    productCount: totalProducts,
+    currentPage: page,
+    totalPages,
+    limit,
+    search,
+  };
 };
 
 module.exports.addToCart = async (email, id) => {
