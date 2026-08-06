@@ -195,5 +195,81 @@ industry solution:
 
 
 3. User Profile
+-------------------------------
+
+Profile
+
+Full Name
+[ Montajur Khan          ]
+
+Email
+[ montajur@gmail.com ] (readonly)
+
+Contact Number
+[ 017xxxxxxxx          ]
+
+Profile Picture
+[ Choose File ]
+
+        [ Save Changes ]
+
+-------------------------------
+
+Lesson 1  Show Profile Page
+done
+Lesson 2  Update Name & Contact
+when user click save
+=> Browser => POST /profile => Controller => Service => DB => Redirect back to /profile
+
+findByIdAndUpdate(id, {fullname, contact}, {new:true})
+without new : true  mongoDB return old documents. that's why new:true is important.
+
+
+Lesson 3  Update Profile Picture
+=> for File
+=> Browser => multipart/form-data => multer => req.file => Controller => Service => DB
+
+Image never enter req.body. instead it goes into req.file  => Multer concept
+
+we have 3 way to store picture.
+=> Buffer in mongoDB => Local Disk => Cloud Storage (cloudinary, aws, google)
+
+for ssr application we will keep Buffer
+
+// for partial Update
+if we write
+await userModel.findByIdAndUpdate(userId, {
+    fullname,
+    contact,
+    picture: file.buffer,
+});
+=> if user just update name and contact => req.file === undefined
+crash!
+
+industry solution:
+initially
+const updateData = {
+    fullname,
+    contact,
+};
+No picture yet.
+
+after that
+if (file) {
+    updateData.picture = file.buffer;
+}
+Now check if a file exists.
+
+
+
+Lesson 4  Keep Old Picture
+Lesson 5  Replace Old Picture
+done
+
+
+Lesson 6  Validation
+Lesson 7  Final Refactor
+
+
 4. Change Password
 5. Better Product Management

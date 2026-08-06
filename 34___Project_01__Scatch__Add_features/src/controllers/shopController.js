@@ -31,12 +31,7 @@ module.exports.addToCart = async (req, res, next) => {
   res.redirect("/shop");
 };
 
-module.exports.getMyAccount = async (req, res,next) => {
- 
-  const {user} = await shopService.getMyAccount(req.user.email);
 
-  res.render("myAccount", { user });
-}
 
 
 

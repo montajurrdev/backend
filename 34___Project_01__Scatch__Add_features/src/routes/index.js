@@ -15,8 +15,6 @@ router.get("/shop", isLoggedIn, authorize(ROLES.USER), shopController.getShop);
 
 router.get("/cart", isLoggedIn, shopController.getCart);
 
-router.get("/myaccount", isLoggedIn, shopController.getMyAccount);
-
 router.get("/addtocart/:productid", isLoggedIn, shopController.addToCart);
 
 module.exports = router;

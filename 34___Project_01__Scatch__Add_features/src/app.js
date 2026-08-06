@@ -12,7 +12,7 @@ require("./config/database");
 // routes
 const index = require("./routes/index");
 const ownersRouter = require("./routes/ownersRouter");
-const usersRouter = require("./routes/usersRouter");
+const userRouter = require("./routes/usersRouter");
 const productsRouter = require("./routes/productsRouter");
 
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // routes:
 app.use("/", index);
 app.use("/owners", ownersRouter); // means: owners related sob req ownersRouter a patay dao
-app.use("/users", usersRouter);
+app.use("/users", userRouter);
 app.use("/products", productsRouter);
 
 

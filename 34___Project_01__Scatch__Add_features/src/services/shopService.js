@@ -56,8 +56,4 @@ module.exports.addToCart = async (email, id) => {
   await user.save();
 };
 
-module.exports.getMyAccount = async (email) => {
-  let user = await userModel.findOne({ email });
 
-  return { user };
-};
