@@ -2,7 +2,7 @@ const userModel = require("../models/user-model")
 
 module.exports.getMyAccount = async (userId) => {
   let user = await userModel.findById(userId);
-
+  
   return { user };
 };
 
@@ -16,8 +16,14 @@ module.exports.updateProfile = async (userId, data, file) => {
   }
 
   if(file){
-    updateData.picture = file.buffer;
+    
+    updateData.picture = {
+      data: file.buffer,
+      contentType: file.mimetype
+    };
   }
 
-  await userModel.findByIdAndUpdate(userId, updateData, {new: true})
+  
+
+  await userModel.findByIdAndUpdate(userId, updateData, {returnDocument : "after",})
 }

@@ -3,7 +3,16 @@
 <div class="max-w-xl mx-auto mt-10 bg-white rounded-lg shadow p-6">
   <h1 class="text-2xl font-bold mb-6">My Profile</h1>
 
-  <form action="/users/profile" method="post" enctype="multipart/form-data">
+  <% if(user.picture){ %>
+
+    <div>
+      <img src="data: <%= user.picture.contentType %>;base64,<%= user.picture.data.toString("base64") %>" alt="This is profile picture">
+    </div>
+    
+  <% }else { %>
+    <p>No profile picture uploaded.</p>
+  <% } %>
+  <form action="/users/profile" method="post" enctype="multipart/form-data" class="mt-12">
     <div class="mb-4">
       <label class="block mb-2"> Full Name </label>
 

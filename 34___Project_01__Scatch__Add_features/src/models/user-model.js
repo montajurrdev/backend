@@ -22,7 +22,10 @@ const userSchema = mongoose.Schema({
     default: [],
   },
   contact: Number,
-  picture: Buffer,
+  picture: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 
