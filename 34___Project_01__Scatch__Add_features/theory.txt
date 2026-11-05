@@ -268,6 +268,18 @@ done
 
 
 Lesson 6  Validation
+for profile update.
+user could submit data like: {"fullname": "", "contact": "abc"}
+system may send it directly to MongoDB. That's not production ready.
+
+so we will Validate first with joi schema
+
+validators/
+└── userValidator.js
+
+
+
+
 Lesson 7  Final Refactor
 
 
